@@ -29,7 +29,7 @@ struct Sqlist
 @name 初始化线性顺序表
 @ElementType method
 @param Sqlist *sqlist 顺序表变量
-@return 1：初始化成功 0：初始化失败
+@return 初始化成功: CORRECT 初始化失败:ERROR
 */
 int	ini_sqlist(Sqlist *sqlist) {
 	if (sqlist->slist == NULL) {
@@ -46,7 +46,7 @@ int	ini_sqlist(Sqlist *sqlist) {
 @param Sqlist *sqlist
 @param int count（添加值的个数)
 @param ...(int) 可输入多个值，逗号隔开
-@return 1:添加成功 0：添加失败
+@return 添加成功: CORRECT 添加失败:ERROR
 */
 int sqlist_append_list(Sqlist *sqlist, int count, ...) {
 	if (sqlist->slist == NULL) {
@@ -76,7 +76,7 @@ int sqlist_append_list(Sqlist *sqlist, int count, ...) {
 @ElementType method
 @param Sqlist *sqlist
 @param int ele 添加的值
-@return 1:添加成功 0：添加失败
+@return 添加成功: CORRECT 添加失败:ERROR
 */
 int sqlist_append(Sqlist *sqlist, int ele) {
 	if (sqlist->slist == NULL) {
@@ -111,9 +111,10 @@ void print_sqlist(Sqlist sqlist, int type = 0) {
 /*
 @name 在i位置之前插入值
 @ElementType method
-@param Sqlist sqlist
+@param Sqlist *sqlist
 @param int i 插入的位置
 @param ele 元素
+@return 成功：CORRECT 失败：ERROR
 */
 int insert_sq_by_index(Sqlist *sqlist,int i,int ele){
 	//判断插入是否合法
@@ -123,6 +124,7 @@ int insert_sq_by_index(Sqlist *sqlist,int i,int ele){
 	}
 	if (sqlist->size <= sqlist->length) {
 		sqlist->slist = (ElementType *)realloc(sqlist->slist, sizeof(ElementType)*(sqlist->size + INCREASE_SIZE));
+		if (!sqlist->slist)return ERROR;
 		sqlist->size += INCREASE_SIZE;
 	}
 	for (int start = sqlist->length-1; start>=i-1; start--) {
@@ -132,10 +134,99 @@ int insert_sq_by_index(Sqlist *sqlist,int i,int ele){
 	sqlist->length++;
 	return CORRECT;
 }
+/*
+@name 反转线性表
+@param Sqlist *sqlist
+@return 成功:CORRECT 失败:ERROR
+*/
+int inverse_sqlist(Sqlist *sqlist) {
+	if (!sqlist->slist) { return ERROR; }
+	int *start, *end,temp;
+	start = sqlist->slist;
+	end = &sqlist->slist[sqlist->length - 1];
+	while (end > start) {
+		temp = *start;
+		*start = *end;
+		*end = temp;
+		start++; 
+		end--;
+	}
+	return CORRECT;
+}
+/*
+@name 线性表排序
+@param Sqlist *sqlist
+@param int mode 0默认升序排列，1降序排列
+@return 成功:CORRECT 失败:ERROR
+*/
+int sort_sqlist(Sqlist *sqlist,int mode=0) {
+	if (!sqlist->slist)return ERROR;
+	int i,j,temp;
+	for (i = 0; i < sqlist->length-1; i++) {
+		for (j = i+1; j <= sqlist->length-1; j++) {
+			if (sqlist->slist[i] > sqlist->slist[j] ^ mode) {
+				temp = sqlist->slist[i];
+				sqlist->slist[i] = sqlist->slist[j];
+				sqlist->slist[j] = temp;
+			}
+		}
+	}
+	return CORRECT;
+}
+/*
+@保持原有次序有序插入单个元素
+@param Sqlist *sqlist
+@param ElementType element 添加的元素
+@param int mode 默认0：增序 1：降序
+@return 成功:CORRECT 失败:ERROR
+*/
+int insert_sqlist_sequence(Sqlist *sqlist,ElementType element,int mode=0) {
+	if (!sqlist->slist)return ERROR;
+	if (sqlist->length >= sqlist->size) {
+		sqlist->slist =(ElementType *) realloc(&sqlist->slist, (sqlist->size + INCREASE_SIZE) * sizeof(ElementType));
+		if (!sqlist->slist)return ERROR;
+		sqlist->size + INCREASE_SIZE;
+	}
+	int *end = &sqlist->slist[sqlist->length];
+	int *start = sqlist->slist;
+	while (end >= start) {
+		if ((element <= *(end - 1)) ^ mode) {
+			*end = *(end - 1);
+		}
+		else {
+			*end = element;
+			break;
+		}
+		end--;
+	}
+	if (end < start)*start = element;
+	sqlist->length++;
+	return CORRECT;
+}
+/*
+@name 删除第i个元素，并返回元素值
+@param Sqlist *sqlist
+@param int i 删除第i个元素
+@param ElementType *element 接收删除后元素
+@return 成功:CORRECT 失败:ERROR
+*/
+int delete_sqlist_by_index(Sqlist *sqlist,int i,ElementType *element) {
+	if (sqlist->length < i || i < 1)return ERROR;
+	int *end = &sqlist->slist[sqlist->length - 1];
+	int *start = &sqlist->slist[i - 1];
+	*element = sqlist->slist[i - 1];
+	while (start != end) {
+		*start = *(start + 1);
+		start++;
+	}
+	sqlist->length--;
+	return CORRECT;
+}
 int main() {
 	Sqlist sqlist;
 	ini_sqlist(&sqlist);	
-	sqlist_append_list(&sqlist, 8, 0, 3,4, 5, 6, 7, 8, 9);
+	/*--线性表的初始化以及三种两种添加方式--*/
+	/*sqlist_append_list(&sqlist, 8, 0, 3,4, 5, 6, 7, 8, 9);
 	sqlist_append(&sqlist, 10);
 	print_sqlist(sqlist);
 	insert_sq_by_index(&sqlist,2,2);
@@ -143,7 +234,32 @@ int main() {
 	insert_sq_by_index(&sqlist, 2, 1);
 	print_sqlist(sqlist);
 	insert_sq_by_index(&sqlist, 11, 11);
+	print_sqlist(sqlist);*/
+
+	/*--线性表的反转--*/
+	/*sqlist_append_list(&sqlist, 7, 1, 2, 3, 4, 5, 6,7);
 	print_sqlist(sqlist);
+	inverse_sqlist(&sqlist);
+	print_sqlist(sqlist);*/
+
+	/*--线性表排序--*/
+	/*sqlist_append_list(&sqlist, 7, 1, 2, 3, 4, 5, 6,7);
+	print_sqlist(sqlist);
+	sort_sqlist(&sqlist,1);
+	print_sqlist(sqlist);*/
+
+	/*--线性表有序插入--*/
+	/*sqlist_append_list(&sqlist, 6, 7, 6, 5, 4, 3, 1);
+	print_sqlist(sqlist);
+	insert_sqlist_sequence(&sqlist, 3,1);
+	print_sqlist(sqlist);*/
+
+	/*--线性表删除第i个元素--*/
+	/*int element;
+	sqlist_append_list(&sqlist, 6, 1, 2, 3, 4, 5, 6);
+	delete_sqlist_by_index(&sqlist,2,&element);
+	print_sqlist(sqlist);
+	printf("%d", element);*/
 	system("pause");
 	return 0;
 }
