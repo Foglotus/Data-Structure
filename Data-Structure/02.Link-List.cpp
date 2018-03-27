@@ -1,6 +1,7 @@
 #include<iostream>
 using namespace std;
 #define ERROR 0
+#define OK 1
 typedef struct LNode {
 	int data;
 	LNode *next;
@@ -54,19 +55,30 @@ void printLinkList(LinkList L) {
 @param LinkList L
 */
 void invertLinkList(LinkList L) {
-	LNode *head=L;
-	LNode *tail=L->next;
-	LNode *temp;
-	temp = tail;
-	tail = tail->next;//tail减少一个
-	temp->next =NULL;
-	head->next = temp;
-	while (tail !=NULL) {
-		temp = tail;//tail弹出一个给temp
-		tail = tail->next;//tail减少一个
-		temp->next = head->next;
-		head->next = temp;
-	}	
+	//LNode *head=L;
+	//LNode *tail=L->next;
+	//LNode *temp;
+	//temp = tail;
+	//tail = tail->next;//tail减少一个
+	//temp->next =NULL;
+	//head->next = temp;
+	//while (tail !=NULL) {
+	//	temp = tail;//tail弹出一个给temp
+	//	tail = tail->next;//tail减少一个
+	//	temp->next = head->next;
+	//	head->next = temp;
+	//}	
+	//L = head;
+	LNode *head = L;
+	LNode * p;
+	LNode *tail = L->next;
+	head->next = NULL;
+	while (tail != NULL) {
+		p = tail->next;
+		tail->next = head->next;
+		head->next = tail;
+		tail = p;
+	}
 	L = head;
 }
 /*
@@ -76,7 +88,7 @@ void invertLinkList(LinkList L) {
 @param LNode *element 接收删除节点
 @return 成功:CORRECT 失败:ERROR
 */
-LNode * linkListDeleteByIndex(LinkList L,int i) {
+int linkListDeleteByIndex(LinkList L,int i) {
 	LNode *p = L;
 	while (--i>=1)
 	{
@@ -88,8 +100,9 @@ LNode * linkListDeleteByIndex(LinkList L,int i) {
 	p->next = p->next->next;
 	cout << "[data:" << del->data << ",self:" << del << ",next:" << del->next << "]\n";
 	free(del);
+	return OK;
 }
-int main() {
+void main2() {
 	/*--链表初始化--*/
 	/*LinkList linklist = ini_LinkList();
 	linklistAppendElement(linklist,1);
@@ -100,14 +113,12 @@ int main() {
 	invertLinkList(linklist);
 	printLinkList(linklist);*/
 
-	LinkList linklist = ini_LinkList();
+	/*LinkList linklist = ini_LinkList();
 	linklistAppendElement(linklist, 1);
 	linklistAppendElement(linklist, 2);
 	linklistAppendElement(linklist, 3);
 	linklistAppendElement(linklist, 4);
 	printLinkList(linklist);
 	linkListDeleteByIndex(linklist, 2);
-	printLinkList(linklist);
-
-	system("pause");
+	printLinkList(linklist);*/
 }

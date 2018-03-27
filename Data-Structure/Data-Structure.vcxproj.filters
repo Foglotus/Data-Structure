@@ -21,5 +21,8 @@
     <ClCompile Include="02.Link-List.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="03Sqstack.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
