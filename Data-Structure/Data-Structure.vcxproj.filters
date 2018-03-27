@@ -21,7 +21,10 @@
     <ClCompile Include="02.Link-List.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="03Sqstack.cpp">
+    <ClCompile Include="04.LinkStack.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="03.SqStack.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

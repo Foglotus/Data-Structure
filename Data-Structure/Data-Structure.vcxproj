@@ -113,7 +113,8 @@
   <ItemGroup>
     <ClCompile Include="01.Sequence-list.cpp" />
     <ClCompile Include="02.Link-List.cpp" />
-    <ClCompile Include="03Sqstack.cpp" />
+    <ClCompile Include="03.SqStack.cpp" />
+    <ClCompile Include="04.LinkStack.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
