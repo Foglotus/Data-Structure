@@ -68,5 +68,5 @@ int main3_1() {
 	pushStock(&s, 10);
 	pushStock(&s, 11);
 	printStack(&s);
-	system("pause");
+	return 0;
 }
