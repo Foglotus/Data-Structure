@@ -115,6 +115,7 @@
     <ClCompile Include="02.Link-List.cpp" />
     <ClCompile Include="03.SqStack.cpp" />
     <ClCompile Include="04.LinkStack.cpp" />
+    <ClCompile Include="05.Queue-Link.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

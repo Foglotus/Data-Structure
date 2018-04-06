@@ -42,7 +42,7 @@ LinkStack printStack(LinkStack top) {
 	cout << "-----------\n";
 	return top;
 }
-int main() {
+int main4() {
 	LinkStack top=NULL;
 	initLinkStack(top);
 	top = pushLinkStack(top, 1);
@@ -54,6 +54,6 @@ int main() {
 	top = pushLinkStack(top, 7);
 	top = pushLinkStack(top, 8);
 	top = printStack(top);
-	system("pause");
+	return 0;
 }
 
