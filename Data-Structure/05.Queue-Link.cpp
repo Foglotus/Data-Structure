@@ -43,7 +43,7 @@ int DelQueue_Link(Queue_Link *Q, int *del) {
 	return 1;
 }
 
-int main() {
+int main5() {
 	Queue_Link Q;
 	InitQueue_Link(&Q);
 	printf("初始化之后：Q地址：%p Q.rear地址：%p Q.rear->next地址：%p\n", &Q, Q.rear, Q.rear->next);
