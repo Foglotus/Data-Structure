@@ -120,6 +120,7 @@
     <ClCompile Include="05.Queue-Link.cpp" />
     <ClCompile Include="06.02.StringKmp.cpp" />
     <ClCompile Include="06.String.cpp" />
+    <ClCompile Include="FindMaxStr.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
