@@ -129,7 +129,7 @@ int StrConcat(SqString *S,SqString *s1,SqString *s2) {
 	return OK;
 }
 
-int main() {
+int main6() {
 	SqString S,T,U;
 	InitString(&S);
 	InitString(&T);

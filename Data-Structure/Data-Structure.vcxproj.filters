@@ -33,5 +33,11 @@
     <ClCompile Include="06.String.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="03.2.SqStack.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="05.02.SqQueeu.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

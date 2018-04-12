@@ -113,8 +113,10 @@
   <ItemGroup>
     <ClCompile Include="01.Sequence-list.cpp" />
     <ClCompile Include="02.Link-List.cpp" />
+    <ClCompile Include="03.2.SqStack.cpp" />
     <ClCompile Include="03.SqStack.cpp" />
     <ClCompile Include="04.LinkStack.cpp" />
+    <ClCompile Include="05.02.SqQueeu.cpp" />
     <ClCompile Include="05.Queue-Link.cpp" />
     <ClCompile Include="06.String.cpp" />
   </ItemGroup>
