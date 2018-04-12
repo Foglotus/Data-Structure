@@ -88,7 +88,7 @@ int StackLength(SqStack *S)
  /*（10）---十进制整数转换为二进制并输出函数*/
 void Conversion(SqStack *S, int number)
 {
-	int temp;
+	char temp;
 	while (number>0) {
 		temp = number % 2;
 		Push(S, temp);
@@ -170,4 +170,5 @@ int main3_2() {
 
 	Correct(&S, "3+4+(5+1+(1+3))");
 	getchar();
+	return 0;
 }

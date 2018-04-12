@@ -118,6 +118,7 @@
     <ClCompile Include="04.LinkStack.cpp" />
     <ClCompile Include="05.02.SqQueeu.cpp" />
     <ClCompile Include="05.Queue-Link.cpp" />
+    <ClCompile Include="06.02.StringKmp.cpp" />
     <ClCompile Include="06.String.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

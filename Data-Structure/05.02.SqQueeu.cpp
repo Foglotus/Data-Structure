@@ -11,7 +11,7 @@ typedef struct
 	int front;
 	int rear;
 }SqQueue;
-
+int QueueEmpty(SqQueue *Q);
 /*（2）---构造一个空循环队列*/
 int InitQueue(SqQueue *Q)
 {
@@ -171,5 +171,5 @@ int main5_02() {
 	result == 1 ? printf("OK\n") : printf("ERROR\n");
 
 	getchar();
-
+	return 0;
 }
